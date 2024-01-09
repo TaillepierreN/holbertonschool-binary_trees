@@ -9,7 +9,7 @@
 size_t balance_height(const binary_tree_t *tree)
 {
 	size_t left_max_height, right_max_height;
-	
+
 	if (tree != NULL)
 	{
 		if (tree->left)
