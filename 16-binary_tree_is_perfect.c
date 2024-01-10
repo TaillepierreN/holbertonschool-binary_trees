@@ -39,6 +39,38 @@ int is_full(const binary_tree_t *tree)
 	/*call recursive function to check if the tree is full*/
 	return (is_full_recursive(tree));
 }
+
+/**
+ * tree_height - measures the height of a binary tree
+ * @tree: pointer to the root node of the tree to measure the height
+ * Return: the height of the node, 0 if the tree is null
+ */
+
+size_t tree_height(const binary_tree_t *tree)
+{
+	size_t left_max_height, right_max_height;
+
+	if (tree != NULL)
+	{
+		if (tree->left)
+			left_max_height = 1 + tree_height(tree->left);
+		else
+			left_max_height = 0;
+
+		if (tree->right)
+			right_max_height = 1 + tree_height(tree->right);
+		else
+			right_max_height = 0;
+
+		if (left_max_height > right_max_height)
+			return (left_max_height);
+		else
+			return (right_max_height);
+	}
+	else
+		return (0);
+}
+
 /**
  * check_if_leaves_at_same_level - check if all leaves are at same level
  * @tree: pointer to the node in the tree to check
@@ -71,7 +103,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	isfull = is_full(tree);
 	if (!isfull)
 		return (0);
-	depth = binary_tree_height(tree);
+	depth = tree_height(tree);
 	leaves_same_level = check_if_leaves_at_same_level(tree, 0, depth);
 
 	return (leaves_same_level);
