@@ -72,4 +72,4 @@ The project consists of multiple tasks, ranging from creating a new node in a bi
 
 ## Authors
 Christophe 'Craig' Marie Reine
-Nicolas Taillepierre
+Nicolas 'Picsou' Taillepierre
