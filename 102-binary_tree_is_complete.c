@@ -5,16 +5,18 @@
  * @rear: index of the back of the queue
  * @size: size of the queue
  * @queue: pointer to queue
-*/
-void resize_queue(int rear, int size, binary_tree_t *queue)
+ */
+int resize_queue(const binary_tree_t ***queue, int *size, int rear)
 {
-	if (rear >= size)
+	if (rear >= *size)
 	{
-		size *= 2;
-		queue = realloc(queue, sizeof(*queue) * size);
-		if (queue == NULL)
-			return (0);
+		*size *= 2;
+		const binary_tree_t **new_queue = realloc(*queue, sizeof(**queue) * (*size));
+		if (new_queue == NULL)
+			return 0;
+		*queue = new_queue;
 	}
+	return 1;
 }
 /**
  * binary_tree_is_complete - checks if binary tree is complete
@@ -23,15 +25,15 @@ void resize_queue(int rear, int size, binary_tree_t *queue)
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	binary_tree_t **queue, *temp;
-	int front = 0, rear = 0, size = 0, flag = 0;
+	const binary_tree_t **queue, *temp;
+	int front = 0, rear = 0, size = 10, flag = 0;
 
 	if (tree == NULL)
-		return (0);
-	size = 10;
+		return 0;
 	queue = malloc(sizeof(*queue) * size);
 	if (queue == NULL)
-		return (0);
+		return 0;
+
 	queue[rear++] = tree;
 	while (front < rear)
 	{
@@ -39,10 +41,7 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (temp->left != NULL)
 		{
 			if (flag)
-			{
-				free(queue);
-				return (0);
-			}
+				break;
 			queue[rear++] = temp->left;
 		}
 		else
@@ -50,16 +49,14 @@ int binary_tree_is_complete(const binary_tree_t *tree)
 		if (temp->right != NULL)
 		{
 			if (flag)
-			{
-				free(queue);
-				return (0);
-			}
+				break;
 			queue[rear++] = temp->right;
 		}
 		else
 			flag = 1;
-		resize_queue(rear, size, queue);
+		if (!resize_queue(&queue, &size, rear))
+			break;
 	}
 	free(queue);
-	return (1);
+	return (front >= rear) ? 1 : 0;
 }
