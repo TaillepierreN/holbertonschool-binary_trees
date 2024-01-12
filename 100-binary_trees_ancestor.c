@@ -11,14 +11,14 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 const binary_tree_t *second)
 {
-	binary_tree_t *parent_first, *parent_second;
+	const binary_tree_t *parent_first, *parent_second;
 
 	/* Check if node is NULL*/
 	if (first == NULL || second == NULL)
 		return (NULL);
 	/*if nodes are the same, they are the lowest common ancestor*/
 	if (first == second)
-		return (first);
+		return ((binary_tree_t *)first);
 	/*get the parents of each node*/
 	parent_first = first->parent;
 	parent_second = second->parent;
