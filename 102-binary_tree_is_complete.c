@@ -5,6 +5,7 @@
  * @rear: index of the back of the queue
  * @size: size of the queue
  * @queue: pointer to queue
+ * Return: 0 of malloc failed,otherwise 1
  */
 int resize_queue(const binary_tree_t ***queue, int *size, int rear)
 {
