@@ -1,10 +1,11 @@
 #include "binary_trees.h"
 
 /**
- * binary_tree_is_complete - checks if binary tree is complete
- * @tree: pointer to root node of the tree
- * Return: 1 if complete, otherwise 0
- */
+ * resize_queue - resize queue if needed
+ * @rear: index of the back of the queue
+ * @size: size of the queue
+ * @queue: pointer to queue
+*/
 void resize_queue(int rear, int size, binary_tree_t *queue)
 {
 	if (rear >= size)
@@ -15,6 +16,11 @@ void resize_queue(int rear, int size, binary_tree_t *queue)
 			return (0);
 	}
 }
+/**
+ * binary_tree_is_complete - checks if binary tree is complete
+ * @tree: pointer to root node of the tree
+ * Return: 1 if complete, otherwise 0
+ */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
 	binary_tree_t **queue, *temp;

@@ -23,7 +23,8 @@ const binary_tree_t *second)
 	parent_first = first->parent;
 	parent_second = second->parent;
 
-	/** Check if the first node is parent of the second
+	/**
+	 * Check if the first node is parent of the second
 	* or if the first is at root level.
 	* If true, start searching for the ancestor between the
 	* first node and the parent of the second node.
@@ -31,7 +32,8 @@ const binary_tree_t *second)
 	if (first == parent_second || parent_first == NULL
 	|| (!parent_first->parent && parent_second))
 		return (binary_trees_ancestor(first, parent_second));
-	/** Check if the second node is a parent of the first
+	/**
+	 * Check if the second node is a parent of the first
 	* or if the second is at root level.
     * If true, start searching for the ancestor between the
 	* parent of the first node and the second node.
